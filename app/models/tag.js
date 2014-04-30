@@ -15,8 +15,9 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    name : String,
-    applications: [{ name : String, icon : String, description : String, app_oid : ObjectId}]
+    name: { type: String, index: {unique: true}},
+    applications: [{ name : String, icon : String, description : String, app_oid : mongoose.Schema.ObjectId}],
+    applications_count : Number
 });
 
 var Tag = mongoose.model('Tag', schema);

@@ -1,7 +1,7 @@
-var application = require('../models/application');
+var Application = require('../models/application');
 
-module.exports.getApplications = function (req, res) {
-    application.find(function(err, found_apps) {
+exports.getApplications = function (req, res) {
+    Application.find(function(err, found_apps) {
         if (err)
             return console.error(err);
         
@@ -16,14 +16,14 @@ module.exports.getApplications = function (req, res) {
     });
 };
 
-module.exports.getApplicationById = function (req, res) {
+exports.getApplicationById = function (req, res) {
     var app_oid = req.params.id;
     
-    application.find({_id: app_oid}, function(err, found_app) {
+    Application.findById(app_oid, function(err, found_app) {
         if (err)
             return console.error(err);
         
         // Getting by id, so there's no way there is more than one
-        res.json(found_app[0]);
+        res.json(found_app);
     });
 };

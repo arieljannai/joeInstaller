@@ -1,12 +1,18 @@
-<html lang="he" ng-app='ngAppProgramsMainPage'>
+<html lang="he" ng-app="joeInstaller" dir="ltr">
     <head>
-        <script src="../../bower_components/angular/angular.js" ></script>
-        <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.css" >
+        <script src="/assets/bower/angular/angular.js" ></script>
+        <script src="../js/index.js" ></script>
+        <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
+        <link rel="stylesheet" href="../stylesheets/style.css" >
     </head>
     <body>
-        <div ng-controller='ShowProgramsController'>
-            <p>Nothing here {{'yet' + '!'}}</p>
-            
+        <div ng-controller="ShowProgramsController">
+            <div ng-repeat="app in applications" class="ApplicationSquare">
+                    <div>
+                        <img ng-src="{{ app.default_icon }}" width="90%" height="90%"/>
+                    </div>
+                    <div>{{ app.name }}</div>
+            </div>
         </div>
     </body>
 </html>

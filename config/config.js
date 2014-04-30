@@ -1,6 +1,7 @@
 // Connection to mongodb
 var mongoose = require('mongoose');
 
+var DOMAIN = 'localhost';
 var PORT = 3000;
 var ENV  = 'development';
 var DB_CONN = 'mongodb://localhost/test';
@@ -28,4 +29,5 @@ module.exports = function(app) {
     app.set('port', PORT);
 	app.set('env', ENV);
     app.set('db', db);
+    app.set('domain', DOMAIN);
 }
