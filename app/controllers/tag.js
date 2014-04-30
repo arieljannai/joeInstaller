@@ -11,7 +11,7 @@ exports.getTags = function (req, res) {
 exports.getTag = function (req, res) {
     var tag_name = req.params.name;
     
-    Tag.findOne({name: tag_name}, function (err, tag) {
+    Tag.findOne({name: tag_name.toLowerCase()}, function (err, tag) {
         if (err)
             return console.warn(err);
         
