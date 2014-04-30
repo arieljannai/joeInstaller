@@ -21,14 +21,12 @@ module.exports = function(app) {
 
   // Serialize user to session
   passport.serializeUser(function(user, done) {
-    debugger;
     done(null, user.token);
   });
 
   // Deserialize user from session
   passport.deserializeUser(function(token, done) {
     User.findOne({token: token}, function(err, user) {
-      debugger;
       done(err, user);
     });
   });
