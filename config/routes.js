@@ -1,8 +1,8 @@
 // Utilities for path manipulation
 var path = require('path'),
     indexController = require('../app/controllers/index.js'),
+    applicationController = require('../app/controllers/application.js'),
     usersController = require('../app/controllers/users.js');
-
 
 module.exports = function(app, express) {
   var authController = require('../app/controllers/auth.js')(app);
@@ -14,4 +14,6 @@ module.exports = function(app, express) {
   app.get('/auth/google/return',
           authController.authenticate('google', { successRedirect: '/main.html',
                                                   failureRedirect: '/login.html' }));
+    app.get('/applications', applicationController.getApplications);
+    app.get('/applications/:id', applicationController.getApplicationById);
 }
