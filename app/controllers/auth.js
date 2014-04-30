@@ -64,6 +64,18 @@ module.exports = function(app) {
   ));
 
   auth.authenticate = passport.authenticate.bind(passport);
+  auth.getUsers = function(req, res) {
+    User.find(function(err, users) {
+      res.json(users);
+    });
+  };
+  auth.getUser = function(req, res) {
+    var token = req.params.token;
+
+    User.findOne({token: token}, function(err, user) {
+      res.json(user);
+    });
+  };
 
   return auth;
 };

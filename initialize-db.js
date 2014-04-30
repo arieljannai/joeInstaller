@@ -32,7 +32,7 @@ var apps = [new Application({name: 'Brackets',
                                      description: 'We still suck'
                                  }
                              ],
-                             tags : ['Development', 'Web']}),
+                             tags : ['development', 'web']}),
            new Application({name: 'Git',
                              description: 'This will ruin your life',
                              default_icon: 'http://thril.uws.edu.au/wp-content/uploads/2013/10/git-icon.png',
@@ -44,7 +44,7 @@ var apps = [new Application({name: 'Brackets',
                                      description: 'Now with simple mode, for the most complicated app in the world!'
                                  }
                              ],
-                            tags : ['Development', 'Source Control', 'Open Source']}),
+                            tags : ['development', 'source control', 'open source']}),
            new Application({name: 'Coca-Cola',
                              description: 'Life',
                              default_icon: 'http://worldofpopculture.com/wp-content/uploads/2014/02/Coca-Cola.jpg',
@@ -56,28 +56,28 @@ var apps = [new Application({name: 'Brackets',
                                      description: 'Now with actual drugs!'
                                  }
                              ],
-                             tags : ['Development', 'Enjoy life', 'Drink responsibly']
+                             tags : ['development', 'enjoy life', 'drink responsibly']
                            })];
 
-var tags = [new Tag({name: 'Development',
+var tags = [new Tag({name: 'development',
                     applications: [],
                     applications_count: 0}),
-            new Tag({name: 'Web',
+            new Tag({name: 'web',
                     applications: [],
                     applications_count: 0}),
-            new Tag({name: 'Source Control',
+            new Tag({name: 'source control',
                     applications: [],
                     applications_count: 0}),
-            new Tag({name: 'Open Source',
+            new Tag({name: 'open source',
                     applications: [],
                     applications_count: 0}),
-            new Tag({name: 'Enjoy life',
+            new Tag({name: 'enjoy life',
                     applications: [],
                     applications_count: 0}),
-            new Tag({name: 'Drink responsibly',
+            new Tag({name: 'drink responsibly',
                     applications: [],
                     applications_count: 0}),
-            new Tag({name: '.NET',
+            new Tag({name: '.net',
                      applications: [],
                      applications_count: 0})];
 
