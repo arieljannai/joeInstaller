@@ -1,7 +1,5 @@
 // The express.js framework
 var express = require('express');
-// Utilities for path manipulation
-var path = require('path');
 // Console logger for development 
 var logger = require('morgan');
 // Responsible for deserializing the url-encoded and json http requests
@@ -10,13 +8,12 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // Define routes and configs
-require('./config/routes')(app);
+require('./config/routes')(app, express);
 require('./config/config')(app);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(express.static(path.join(__dirname, 'public')));
 
 /// catch 404 and forwarding to error handler
 app.use(function (req, res, next) {
