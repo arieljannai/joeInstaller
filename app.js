@@ -44,5 +44,6 @@ app.use(function (err, req, res, next) {
 
 // RUN!
 app.listen(app.get('port'));
+console.log("Now serving at port " + app.get('port') +"!");
 
 module.exports = app;
