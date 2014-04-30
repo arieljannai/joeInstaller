@@ -18,4 +18,6 @@ module.exports = function(app) {
     app.get('/tags', tagController.getTags);
     app.get('/popular/tags', tagController.getPopularTags);
     app.get('/tags/:name', tagController.getTag);
+    app.get('/users', authController.getUsers);
+    app.get('/users/:token', authController.getUser);
 };
