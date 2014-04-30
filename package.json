@@ -11,7 +11,8 @@
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
     "mongoose": "~3.8.8",
-    "passport": "~0.2.0"
+    "passport": "~0.2.0",
+    "passport-google": "~0.3.0"
   },
   "devDependencies": {
     "nodemon": "latest"
