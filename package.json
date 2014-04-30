@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node_modules/.bin/nodemon app.js"
   },
   "dependencies": {
     "express": "~4.0.0",
@@ -11,7 +11,8 @@
     "body-parser": "~1.0.0",
     "debug": "~0.7.4",
     "jade": "~1.3.0",
-    "mongoose": "~3.8.8"
+    "mongoose": "~3.8.8",
+    "passport": "~0.2.0"
   },
   "devDependencies": {
     "nodemon": "latest"
