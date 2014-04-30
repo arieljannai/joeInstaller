@@ -8,6 +8,7 @@ module.exports = function(app) {
 
   app.use('/', express.static(path.join(__dirname, '../', 'public/html')));
   app.use('/assets', express.static(path.join(__dirname, '../', 'public')));
+  app.use('/assets/bower', express.static(path.join(__dirname, '../', 'bower_components')));
   app.get('/auth/google', authController.authenticate('google'));
   app.get('/auth/google/return',
           authController.authenticate('google', { successRedirect: '/main.html',
