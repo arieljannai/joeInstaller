@@ -11,7 +11,7 @@ var app = angular.module('joeInstaller', []);
     ];
 }]);*/
 
-app.controller('ShowProgramsController', ['$scope', function($scope) {
+app.controller('ShowProgramsController', ['$scope', function ($scope) {
     $scope.applications = [
         {
             '_id' : '1A3D',
