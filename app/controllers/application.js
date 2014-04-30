@@ -8,7 +8,7 @@ exports.getApplications = function (req, res) {
         res.json(found_apps.map(function(app) {
             return {
                 name: app.name,
-                icon: app.icon,
+                icon: app.default_icon,
                 description: app.description,
                 app_oid: app._id
             };
@@ -26,4 +26,9 @@ exports.getApplicationById = function (req, res) {
         // Getting by id, so there's no way there is more than one
         res.json(found_app);
     });
+};
+
+exports.addApplication = function (req, res) {
+    var addedApp = req.body;
+    
 };
