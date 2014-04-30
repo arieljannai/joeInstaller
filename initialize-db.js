@@ -60,19 +60,26 @@ var apps = [new Application({name: 'Brackets',
                            })];
 
 var tags = [new Tag({name: 'Development',
-                    applications: []}),
+                    applications: [],
+                    applications_count: 0}),
             new Tag({name: 'Web',
-                    applications: []}),
+                    applications: [],
+                    applications_count: 0}),
             new Tag({name: 'Source Control',
-                    applications: []}),
+                    applications: [],
+                    applications_count: 0}),
             new Tag({name: 'Open Source',
-                    applications: []}),
-            new Tag({name: 'Development',
-                    applications: []}),
+                    applications: [],
+                    applications_count: 0}),
             new Tag({name: 'Enjoy life',
-                    applications: []}),
+                    applications: [],
+                    applications_count: 0}),
             new Tag({name: 'Drink responsibly',
-                    applications: []})];
+                    applications: [],
+                    applications_count: 0}),
+            new Tag({name: '.NET',
+                     applications: [],
+                     applications_count: 0})];
 
 apps.forEach(function (app) {
     app.save(function (err, saved_app) {
@@ -92,6 +99,7 @@ tags.forEach(function (tag) {
                 icon : app.default_icon,
                 description : app.description,
                 app_oid : app._id});
+            tag.applications_count++;
         });
     
     tag.save(function (err, saved_tag) {
