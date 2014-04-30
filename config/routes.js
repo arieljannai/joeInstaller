@@ -15,6 +15,6 @@ module.exports = function(app) {
     app.get('/applications', applicationController.getApplications);
     app.get('/applications/:id', applicationController.getApplicationById);
     app.get('/tags', tagController.getTags);
-    app.get('/tags/popular', tagController.getPopularTags);
+    app.get('/popular/tags', tagController.getPopularTags);
     app.get('/tags/:name', tagController.getTag);
 };
