@@ -14,4 +14,5 @@ module.exports = function(app, express) {
                 authController.authenticate('google', { successRedirect: '/',
                                                        failureRedirect: '/login.html' }));
     app.get('/applications', applicationController.getApplications);
+    app.get('/applications/:id', applicationController.getApplicationById);
 }
