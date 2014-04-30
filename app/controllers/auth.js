@@ -1,7 +1,10 @@
+var passport = require('passport'),
+    GoogleStrategy = require('passport-google').Strategy,
+    User = require('../models/user.js'),
+    Url = require('url'),
+    auth = {};
+
 module.exports = function(app) {
-  var passport = require('passport'),
-      GoogleStrategy = require('passport-google').Strategy,
-      auth = {};
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -18,8 +21,30 @@ module.exports = function(app) {
       realm: 'http://localhost:3000/'
     },
     function(identifier, profile, done) {
-      debugger;
-      done(null, profile);
+      var token = Url.parse(identifier, true).query.id;
+      User.findOne({token: token}, function(err, user) {
+        var usr = user;
+
+        if (!usr) {
+          usr = new User({
+            token: token,
+            displayName: profile.displayName,
+            name: {
+              givenName: profile.name.givenName,
+              familyName: profile.name.familyName
+            },
+            applications: []
+          });
+
+          usr.save(function(err) {
+            if (!err) {
+              done(null, usr);
+            }
+          });
+        } else {
+          done(null, usr);
+        }
+      });
     }
   ));
 
@@ -27,4 +52,3 @@ module.exports = function(app) {
 
   return auth;
 };
-
