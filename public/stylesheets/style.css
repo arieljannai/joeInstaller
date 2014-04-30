@@ -1,8 +1,25 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+<html>
+	<head>
+		<style>
+			div
+			{
+				background-color:#B0C4DE;
+			}
+			h1
+			{
+				color:#808080;
+				text-align:center;
+			}
+			p
+			{
+				font-family:"Tahoma";
+				font-size:20px;
+			}
+		</style>
+	</head>
 
-a {
-  color: #00B7FF;
-}
+	<body>
+		<h1>CSS example!</h1>
+		<p>Joe the Installer!</p>		
+	</body>
+</html>
