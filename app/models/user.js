@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     ObjectId = Schema.ObjectId;
 
 var schema = new Schema({
-  token: String,
+  token: {type: String, index: {unique: true}},
   displayName: String,
   name: {givenName: String, familyName: String},
   applications: [{ aid: ObjectId, name: String }]
