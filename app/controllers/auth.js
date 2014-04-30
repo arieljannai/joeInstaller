@@ -1,13 +1,30 @@
-var passport = require('passport'),
-    GoogleStrategy = require('passport-google').Strategy;
+module.exports = function(app) {
+  var passport = require('passport'),
+      GoogleStrategy = require('passport-google').Strategy,
+      auth = {};
 
-passport.use(new GoogleStrategy({
-    returnURL: 'http://localhost/auth/google/return',
-    realm: 'http://localhost/'
-  },
-  function(identifier, profile, done) {
-    done(0, profile);
-  }
-));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-exports.authenticate = passport.authenticate.bind(passport);
+  passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
+
+  passport.use(new GoogleStrategy({
+      returnURL: 'http://localhost:3000/auth/google/return',
+      realm: 'http://localhost:3000/'
+    },
+    function(identifier, profile, done) {
+      debugger;
+      done(null, profile);
+    }
+  ));
+
+  auth.authenticate = passport.authenticate.bind(passport);
+
+  return auth;
+};
+
