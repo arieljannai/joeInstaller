@@ -1,17 +1,16 @@
-var app = angular.module('joeInstaller', []);
+var joeApp = angular.module('joeInstaller', ['ngResource']);
 
-/*app.controller('ShowProgramsController', ['$scope', function ShowProgramsController($scope) {
-    $scope.programs = [
-        {'name': 'Visual Studio', 'version': '2013' },
-        {'name': 'Notepad++', 'version': '6.5.3' },
-        {'name': 'Sublime', 'version': '2.9' },
-        {'name': 'Eclipse', 'version': 'Helios' },
-        {'name': 'Office', 'version': '2010' },
-        {'name': 'Chrome', 'version': '32.2.15322.15232665' }
-    ];
-}]);*/
+joeApp.controller('AppsCtrl', ['$scope', 'Application', function ($scope, Application) {
+    $scope.applications = Application.query();
+}]);
 
-app.controller('ShowProgramsController', ['$scope', function($scope) {
+
+joeApp.factory('Application', ['$resource', function ($resource) {
+    return $resource('/applications');
+}]);
+
+/*
+joeApp.controller('ShowProgramsController', ['$scope', function ($scope) {
     $scope.applications = [
         {
             '_id' : '1A3D',
@@ -60,3 +59,4 @@ app.controller('ShowProgramsController', ['$scope', function($scope) {
         'Visual Studio', 'Photoshop', 'Adobe', 'DB'
     ];
 }]);
+*/

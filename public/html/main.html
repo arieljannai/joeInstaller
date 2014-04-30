@@ -1,17 +1,19 @@
 <html lang="he" ng-app="joeInstaller" dir="ltr">
     <head>
         <script src="/assets/bower/angular/angular.js" ></script>
-        <script src="../js/index.js" ></script>
+        <script src="/assets/bower/angular-resource/angular-resource.js" ></script>
+        <script src="/assets/js/index.js" ></script>
         <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
-        <link rel="stylesheet" href="../stylesheets/style.css" >
+        <link rel="stylesheet" href="/assets/stylesheets/style.css" >
     </head>
     <body>
-        <div ng-controller="ShowProgramsController">
+        <div ng-controller="AppsCtrl">
             <div ng-repeat="app in applications" class="ApplicationSquare">
                     <div>
                         <img ng-src="{{ app.default_icon }}" width="90%" height="90%"/>
                     </div>
                     <div>{{ app.name }}</div>
+                    <div>{{ app }}</div>
             </div>
         </div>
     </body>
