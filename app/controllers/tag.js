@@ -22,7 +22,7 @@ exports.getTag = function (req, res) {
     });
 };
 
-// GET the fivemost popular tags, sorted applications_count
+// GET the fivemost popular tags, sorted by applications_count
 exports.getPopularTags = function (req, res) {
     Tag.find().sort({applications_count : -1}).limit(5).exec(
         function (err, tags) {
