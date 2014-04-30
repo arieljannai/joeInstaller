@@ -5,29 +5,47 @@
         <title> Joe the Installer! </title>
         <img src ="title.jpg"/>
         <script src="../../bower_components/angular/angular.js" ></script>
-        <!--<link  href="../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">-->
+        <!--<link  href="../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> -->
         <link  href="../stylesheets/style.css" rel="stylesheet">
         <script>
             var Joe = angular.module('Joe', []);
+  
             
             Joe.controller('AppCtrl', ['$scope', function($scope) {
-                $scope.apps = ['Visual Studio', 'Notepad++', 'Git'];
+                $scope.apps = ['Visual Studio', 'Notepad++', 'Git', 'a', 'b', 'c', 'd', 'e', 'f', 'g'];
+                $scope.tags = ['Microsoft', 'Image', 'Development'];
             }]);
+           
         </script>
     </head>
-    
-    <body ng-controller="AppCtrl">
+
+    <body ng-controller="AppCtrl" >
         <div>
-            search: <input type ="text" ng-model ="searchText" />
+            search: <input type ="text" ng-model ="searchText" size="80%" />
             {{ searchText }}    
             <br />
+            
+            <h3>Tags</h3>
+            <div class="container-fluid">
+               <div class="row">
+                    <div class="col-md-3" ng-repeat="tag in tags | filter:searchText"`>
+                        {{tag}}
+                    </div>
+                </div>
+                
+            </div>
+            <br />
+            <br />
             <h3>Applications</h3>
-            <table>
-                <tr ng-repeat="app in apps | filter:searchText">
-                    <td>{{ app }}</td>
-                </tr>
-            </table>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3" ng-repeat="app in apps | filter:searchText"`>
+                        {{app}}
+                    </div>
+                </div>
+            </div>
+            
         </div>
-    </body>
+    </body> 
  </center>
 </html>
