@@ -17,8 +17,8 @@ module.exports = function(app) {
   });
 
   passport.use(new GoogleStrategy({
-      returnURL: 'http://localhost:3000/auth/google/return',
-      realm: 'http://localhost:3000/'
+      returnURL: 'http://' + app.get('domain') + ':' + app.get('port') + '/auth/google/return',
+      realm: 'http://' + app.get('domain') + ':' + app.get('port') + '/'
     },
     function(identifier, profile, done) {
       var token = Url.parse(identifier, true).query.id;

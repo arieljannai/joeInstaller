@@ -8,8 +8,8 @@ var bodyParser = require('body-parser');
 var app = express();
 
 // Define routes and configs
-require('./config/routes')(app, express);
 require('./config/config')(app);
+require('./config/routes')(app);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());

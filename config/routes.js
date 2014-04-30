@@ -1,10 +1,11 @@
 // Utilities for path manipulation
-var path = require('path'),
+var express = require('express'),
+    path = require('path'),
     indexController = require('../app/controllers/index.js'),
     applicationController = require('../app/controllers/application.js'),
     usersController = require('../app/controllers/users.js');
 
-module.exports = function(app, express) {
+module.exports = function(app) {
   var authController = require('../app/controllers/auth.js')(app);
 
   app.use('/', express.static(path.join(__dirname, '../', 'public/html')));
