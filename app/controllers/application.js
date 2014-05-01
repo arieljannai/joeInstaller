@@ -29,6 +29,12 @@ exports.getApplicationById = function (req, res) {
 };
 
 exports.addApplication = function (req, res) {
-    var addedApp = req.body;
-    
+    var newApp = new Application(req.body);
+    newApp.save(function (err, savedApp) {
+        if (err) {
+            res.json(500, {success : false, error: "Failed saving application to DB"});
+        } else {
+            res.json({success : true});
+        }
+    });
 };

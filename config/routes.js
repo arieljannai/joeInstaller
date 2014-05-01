@@ -15,6 +15,7 @@ module.exports = function(app) {
                                                   failureRedirect: '/login.html' }));
   app.get('/applications', applicationController.getApplications);
   app.get('/applications/:id', applicationController.getApplicationById);
+ app.post('/applications', applicationController.addApplication);
   app.get('/tags', tagController.getTags);
   app.get('/popular/tags', tagController.getPopularTags);
   app.get('/tags/:name', tagController.getTag);
