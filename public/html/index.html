@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
         <link rel="stylesheet" href="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.css" >
         <link rel="stylesheet" href="/assets/stylesheets/offcanvas.css" >
+        <link  href="/assets/stylesheets/style.css" rel="stylesheet">
     </head>
   <body>
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -36,6 +37,10 @@
             <li class="active"><a href="#">בית</a></li>
             <li><a href="#about">אודות</a></li>
             <li><a href="#contact">צרו קשר</a></li>
+              
+            <input id="search-button" type="image" value="Search" name="sa" alt="search" src="http://cdn.css-tricks.com/images/mag.png" style="float: right">
+            <li><input type="search" ng-model ="searchText" style="float: right"/><li>
+              
             <li style="float:left"><a href="#me">{{ me.displayName }}</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -55,7 +60,7 @@
             <p>אני כאן כדי לעזור לכם לארגן את ההתקנות שלכם, ולעשות לכם חיים קלים. <br>בעזרתי תוכלו למצוא ולהתקין בקלות את כל התוכנות שתרצו :)</p>
           </div>
           <div class="row" >
-        <div class="col-lg-4" ng-repeat="app in applications">
+        <div class="col-lg-4" ng-repeat="app in applications | filter:searchText">
             <img class="img-circle" ng-src="{{ app.icon }}" style="width: 140px; height: 140px; border:1px solid #CCCCFF; box-shadow: 4px 4px 3px #888888;">
           <h2>{{ app.name }}</h2>
           <p>{{ app.description }}</p>
@@ -71,7 +76,7 @@
             <div class="col-md-7">
               <h2 class="featurette-heading">{{ selectedApp.name }} <span class="text-muted" style="font-size:0.4em">(גרסה: {{ selectedApp.versions[0].version }})</span></h2> 
               <p class="lead"><span class="text-muted">{{ selectedApp.description }}</span></p>
-                <p>{{ selectedApp.versions[0].description }}</p>
+                <p>{{ selectedApp.versions[0].desscription }}</p>
                 <a role="button" class="btn btn-default navbar-btn" style="margin:1%; background-color:#80B1F2" ng-href="{{ selectedApp.versions[0].path }}">
                     <span class="glyphicon glyphicon-download"></span> הורד</a>
                 <h4>תגיות:</h4>
@@ -85,9 +90,9 @@
         
         </div><!--/span-->
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl">
-          <div class="list-group" style="max-height:400px; overflow-y:scroll">
-            <a ng-repeat="tag in tags" href="#" class="list-group-item">{{ tag.name }}</a>
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl" >
+          <div style="max-height:100%; padding-left: 20%; overflow-y: auto" class="tags">
+            <a href="#" ng-repeat="tag in tags  | filter:searchText" style="clear:both" class="">{{ tag.name }}</a></li>
           </div>
         </div><!--/span-->
       </div><!--/row-->

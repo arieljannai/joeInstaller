@@ -37,16 +37,14 @@ h1{
     height="90%";
 }
 
-<!--input[type="search"]
-{
- 
+input[type="search"] {
     color: black;       
 	text-align: right;
 	cursor: pointer;
 	display: block; 
 	width: 80%;   
 	text-shadow: 0 0 2px lightblue;       
-	word-spacing: 20px;  -->
+	word-spacing: 20px; 
 }
 
 *---Tags!! --*
@@ -56,7 +54,7 @@ h1{
 	padding:0;
 	position:absolute;
 	right:24px;
-	bottom:-12px;
+	bottom:12px;
 	list-style:none;
 	}
 .tags li, .tags a{
@@ -67,10 +65,10 @@ h1{
 	font-size:11px;
 	}
 .tags a{
-	margin-left:20px;
+	margin-left:0;
 	padding:0 10px 0 12px;
-	background:#0089e0;
-	color:#fff;
+	background:silver;
+	color:black;
 	text-decoration:none;
 	-moz-border-radius-bottomright:4px;
 	-webkit-border-bottom-right-radius:4px;	
@@ -87,7 +85,7 @@ h1{
 	left:-12px;
 	width:0;
 	height:0;
-	border-color:transparent #0089e0 transparent transparent;
+	border-color:transparent silver transparent transparent;
 	border-style:solid;
 	border-width:12px 12px 12px 0;		
 	}
