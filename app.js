@@ -1,19 +1,25 @@
 // The express.js framework
-var express = require('express');
+var express = require('express'),
 // Console logger for development 
-var logger = require('morgan');
+    logger = require('morgan'),
 // Responsible for deserializing the url-encoded and json http requests
-var bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+// Responsible for parsing cookies. Needed by express-session
+    cookieParser = require('cookie-parser'),
+// Responsible for managing the session
+    session = require('express-session'),
+    app = express();
 
-var app = express();
+app.use(logger('dev'));
+app.use(bodyParser());
+app.use(cookieParser());
+app.use(session({
+  secret: 'fa0dbde336355bf01b791c67acacf37f2d5ca7934ab0a844306958ec1de43e20143f24c54c7737112eef54f6d969e2566295def976998871c533b6acade262cf'
+}));
 
 // Define routes and configs
 require('./config/config')(app);
 require('./config/routes')(app);
-
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
 
 /// catch 404 and forwarding to error handler
 app.use(function (req, res, next) {

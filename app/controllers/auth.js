@@ -21,11 +21,13 @@ module.exports = function(app) {
 
   // Serialize user to session
   passport.serializeUser(function(user, done) {
+    debugger;
     done(null, user.token);
   });
 
   // Deserialize user from session
   passport.deserializeUser(function(token, done) {
+    debugger;
     User.findOne({token: token}, function(err, user) {
       done(err, user);
     });
@@ -81,7 +83,15 @@ module.exports = function(app) {
        displayName: req.user.displayName,
        name: req.user.name
      });
-   };
+  };
+  auth.isUserAuthenticated = function(req, res, next) {
+    debugger;
+    if (req.isAuthenticated()) {
+      res.redirect('/main.html');
+    } else {
+      next();
+    }
+  };
 
   return auth;
 };

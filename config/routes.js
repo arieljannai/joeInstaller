@@ -9,14 +9,16 @@ module.exports = function(app) {
   app.use('/', express.static(path.join(__dirname, '../', 'public/html')));
   app.use('/assets', express.static(path.join(__dirname, '../', 'public')));
   app.use('/assets/bower', express.static(path.join(__dirname, '../', 'bower_components')));
-  app.get('/auth/google', authController.authenticate('google'));
-  app.get('/auth/google/return', authController.authenticate('google'),
-          authController.getAuthenticatedUser);
-    app.get('/applications', applicationController.getApplications);
-    app.get('/applications/:id', applicationController.getApplicationById);
-    app.get('/tags', tagController.getTags);
-    app.get('/popular/tags', tagController.getPopularTags);
-    app.get('/tags/:name', tagController.getTag);
-    app.get('/users', authController.getUsers);
-    app.get('/users/:token', authController.getUser);
+  app.get('/auth/google', authController.isUserAuthenticated, authController.authenticate('google'));
+  app.get('/auth/google/return',
+          authController.authenticate('google', { successRedirect: '/main.html',
+                                                  failureRedirect: '/login.html' }));
+  app.get('/applications', applicationController.getApplications);
+  app.get('/applications/:id', applicationController.getApplicationById);
+  app.get('/tags', tagController.getTags);
+  app.get('/popular/tags', tagController.getPopularTags);
+  app.get('/tags/:name', tagController.getTag);
+  app.get('/users', authController.getUsers);
+  app.get('/users/:token', authController.getUser);
+  app.get('/users/authenticated', authController.getAuthenticatedUser);
 };
