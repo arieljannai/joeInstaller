@@ -4,38 +4,49 @@
     <head>
         <title> Joe the Installer! </title>
         <img src ="title.jpg"/>
-        <script src="../../bower_components/angular/angular.js" ></script>
-        <script src="../js/index.js" ></script>
-        <!--<link  href="../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> -->
+       
+        <script src="/assets/bower/angular/angular.js" ></script>
+        <script src="/assets/bower/angular-resource/angular-resource.js" ></script>
+        <script src="/assets/js/index.js" ></script>
+        
+        <!--<link  href="../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">-->
         <link  href="../stylesheets/style.css" rel="stylesheet">
        
     </head>
 
-    <body ng-controller="ShowProgramsController" >
+    <body>
         <div>
             search: <input type ="text" ng-model ="searchText" size="80%" />
             {{ searchText }}    
             <br />
             <br />
-            <div class="container-fluid">
-               <div class="row">
-                    <div class="col-md-2" ng-repeat="tag in tags | filter:searchText"`>
-                        {{tag}}
-                    </div>
-                </div>
-                
+             <div class="container-fluid">                                          
+                   <div class="row" ng-controller="TagsCtrl">
+                        <div class="col-md-2" ng-repeat="tag in tags | filter:searchText">
+                            {{tag.name}}
+                        </div>
+                    </div>                         
             </div>
+            
             <br />
             <br />
             <h3>Applications</h3>
-            <div class="container-fluid">
+            <div class="container-fluid"  ng-controller="AppsCtrl">
                 <div class="row"> 
                     <div class="col-md-3" ng-repeat="app in applications | filter:searchText"`>
-                       <a ng-href="{{app.versions[0].path}}"><img ng-src = "{{app.versions[0].icon}}" width="150" height="150" title ={{app.description}} ></a> 
+                       <a ng-href="{{app.path}}"><img ng-src = "{{app.icon}}" width="150" height="150" title ={{app.description}} ></a> 
                         <br/>{{app.name}}
                     </div>
                 </div>
             </div>
+            <br />
+         <div ng-controller="UsersCtrl">
+             
+             
+            <div ng-repeat="user in users">
+                    <div>{{ user.name.givenName + ' ' + user.name.familyName }}</div>
+            </div>
+        </div>
             
         </div>
     </body> 
