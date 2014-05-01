@@ -18,7 +18,8 @@
 }
 */
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    capitalize = require('../utils').capitalize;
 
 var schema = new mongoose.Schema({
     name : String,
@@ -26,6 +27,20 @@ var schema = new mongoose.Schema({
     default_icon: String,
     versions: [{ version: String, path : String, icon : String, checksum : String, description : String}],
     tags: [ {type: String} ]
+});
+
+schema.pre('save', function(next) {
+    this.tags = this.tags.map(function(tag) { return capitalize(tag); });
+    /*for(tag in this.tags)
+    {
+        Tag.update({name: tag}, {name: tag}, {upsert: true}, function(err) {
+            if (err) {
+                console.log(err);
+                next(err);
+            }
+        });
+    }*/
+    next();
 });
 
 var Application = mongoose.model('Application', schema);
