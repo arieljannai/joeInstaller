@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="he" ng-app="joeInstaller">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="/assets/bower/angular/angular.js" ></script>
+        <script src="/assets/bower/angular-resource/angular-resource.js" ></script>
+        <script src="/assets/bower/jquery/dist/jquery.js" ></script>
+        <script src="/assets/js/offcanvas.js" ></script>
+        <script src="/assets/bower/bootstrap/dist/js/bootstrap.js" ></script>
+        <script src="/assets/js/index.js" ></script>        
+                
+        <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
+        <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
+        <link rel="stylesheet" href="/assets/stylesheets/offcanvas.css" >
+    </head>
+  <body>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">יוחנן המתקין</a>
+        </div>
+        <div class="collapse navbar-collapse" ng-controller="UsersCtrl">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">בית</a></li>
+            <li><a href="#about">אודות</a></li>
+            <li><a href="#contact">צרו קשר</a></li>
+            <li><a href="#me">{{ me }}</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9" ng-controller="AppsCtrl">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1>ברוכים הבאים ליוחנן המתקין!</h1>
+            <p>אני כאן כדי לעזור לכם לארגן את ההתקנות שלכם, ולעשות לכם חיים קלים. <br>בעזרתי תוכלו למצוא ולהתקין בקלות את כל התוכנות שתרצו :)</p>
+          </div>
+          <div class="row" >
+        <div class="col-lg-4" ng-repeat="app in applications">
+            <img class="img-circle" ng-src="{{ app.icon }}" style="width: 140px; height: 140px; border:1px solid #CCCCFF; box-shadow: 4px 4px 3px #888888;">
+          <h2>{{ app.name }}</h2>
+          <p>{{ app.description }}</p>
+          <p><a class="btn btn-default" href="#selectedApp" role="button" ng-click="changeSelecetedApp(app)">לפרטים נוספים »</a></p>
+        </div>
+      </div><!--/row-->
+            
+      <hr class="featurette-divider " ng-show="showSelectedAppDivider">
+
+      <div class="row featurette">
+        <a id="selectedApp">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">{{ selectedApp.name }}</h2>
+          <p class="lead"><span class="text-muted">{{ selectedApp.description }}</span></p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" width="70%" height="70%" src="{{ selectedApp.icon }}">
+        </div></a>
+      </div>
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl">
+          <div class="list-group" style="max-height:400px; overflow-y:scroll">
+            <a ng-repeat="tag in tags" href="#" class="list-group-item">{{ tag.name }}</a>
+          </div>
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>© Powered by Joe</p>
+      </footer>
+
+    </div>
+</body></html>

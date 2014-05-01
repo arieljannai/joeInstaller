@@ -1,7 +1,19 @@
 var joeApp = angular.module('joeInstaller', ['ngResource']);
 
+/*joeApp.value('me', ['$scope', 'Me', function($scope, Me){
+    joeApp.me = Me.get();
+}]);
+
+console.log('me: ' + me);*/
+
 joeApp.controller('AppsCtrl', ['$scope', 'Application', function ($scope, Application) {
     $scope.applications = Application.query();
+    $scope.showSelectedAppDivider = false;
+    
+    $scope.changeSelecetedApp = function (app) {
+        $scope.selectedApp = app;
+        $scope.showSelectedAppDivider = true;
+    }
 }]);
 
 joeApp.controller('TagsCtrl', ['$scope', 'Tag', function ($scope, Tag) {
@@ -10,6 +22,7 @@ joeApp.controller('TagsCtrl', ['$scope', 'Tag', function ($scope, Tag) {
 
 joeApp.controller('UsersCtrl', ['$scope', 'User', function ($scope, User) {
     $scope.users = User.query();
+    $scope.me = User.authenticated();
 }]);
 
 joeApp.factory('Application', ['$resource', function ($resource) {
@@ -21,5 +34,5 @@ joeApp.factory('Tag', ['$resource', function ($resource) {
 }]);
 
 joeApp.factory('User', ['$resource', function ($resource) {
-    return $resource('/users');
+    return $resource('/users', {}, { authenticated: {method: 'GET', url: '/user/authenticated'} });
 }]);

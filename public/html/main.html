@@ -4,6 +4,7 @@
         <script src="/assets/bower/angular-resource/angular-resource.js" ></script>
         <script src="/assets/js/index.js" ></script>
         <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
+        <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
         <link rel="stylesheet" href="/assets/stylesheets/style.css" >
     </head>
     <body>
@@ -29,6 +30,9 @@
             <div ng-repeat="user in users">
                     <div>{{ user.name.givenName + ' ' + user.name.familyName }}</div>
             </div>
+        </div>
+        <div ng-controller="MeCtrl">
+            {{ 'thats me: ' + me }}
         </div>
     </body>
 </html>
