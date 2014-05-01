@@ -183,31 +183,35 @@ Tag.find(function(err, tags) {
     });
 });
 
-apps.forEach(function (app) {
-    app.save(function (err, saved_app) {
-        if (err)
-            return console.error(err);
-        
-        console.log("Created application " + saved_app.name + " in the DB!");
-    });
-});
+setTimeout(function() {
+    apps.forEach(function (app) {
+        app.save(function (err, saved_app) {
+            if (err)
+                return console.error(err);
 
-tags.forEach(function (tag) {
-    apps.filter(function (app) {
-            return app.tags.indexOf(tag.name) != -1})
-        .forEach(function (app) {
-            tag.applications.push({
-                name : app.name,
-                icon : app.default_icon,
-                description : app.description,
-                app_oid : app._id});
-            tag.applications_count++;
+            console.log("Created application " + saved_app.name + " in the DB!");
         });
-    
-    tag.save(function (err, saved_tag) {
-        if (err)
-            return console.error(err);
-        
-        console.log("Created tag " + saved_tag.name + " in the DB!");
     });
-});
+
+    tags.forEach(function (tag) {
+        apps.filter(function (app) {
+                return app.tags.indexOf(tag.name) != -1})
+            .forEach(function (app) {
+                tag.applications.push({
+                    name : app.name,
+                    icon : app.default_icon,
+                    description : app.description,
+                    app_oid : app._id});
+                tag.applications_count++;
+            });
+
+        tag.save(function (err, saved_tag) {
+            if (err)
+                return console.error(err);
+
+            console.log("Created tag " + saved_tag.name + " in the DB!");
+        });
+    });
+    
+    setTimeout(process.exit, 2000);
+}, 2000);
