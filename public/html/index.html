@@ -3,21 +3,27 @@
     <center>
     <head>
         <title> Joe the Installer! </title>
-        <img src ="title.jpg"/>
+        
        
         <script src="/assets/bower/angular/angular.js" ></script>
         <script src="/assets/bower/angular-resource/angular-resource.js" ></script>
         <script src="/assets/js/index.js" ></script>
         
-        <!--<link  href="../../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">-->
-        <link  href="../stylesheets/style.css" rel="stylesheet">
+        <link  href="/assets/bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <link  href="/assets/stylesheets/style.css" rel="stylesheet">
        
     </head>
 
     <body>
-        <div>
-            search: <input type ="text" ng-model ="searchText" size="80%" />
-            {{ searchText }}    
+            <h1> Joe the Installer! </h1>
+            <br />
+    
+           <div>
+            <input id="search-button" type="image" value="Search" name="sa" alt="search" src="http://cdn.css-tricks.com/images/mag.png" style="float: left">
+            <input type="search" ng-model ="searchText" style="float: left"/>
+           </div>
+            <br />
+            {{ searchText }}
             <br />
             <br />
              <div class="container-fluid">                                          
