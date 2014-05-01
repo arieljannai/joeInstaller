@@ -4,12 +4,12 @@ joeApp.controller('AppsCtrl', ['$scope', 'Application', function ($scope, Applic
     $scope.applications = Application.query();
 }]);
 
-joeApp.controller('TagsCtrl', ['$scope', 'Tags', function ($scope, Tags) {
-    $scope.tags = Tags.query();
+joeApp.controller('TagsCtrl', ['$scope', 'Tag', function ($scope, Tag) {
+    $scope.tags = Tag.query();
 }]);
 
-joeApp.controller('UsersCtrl', ['$scope', 'Users', function ($scope, Users) {
-    $scope.users = Users.query();
+joeApp.controller('UsersCtrl', ['$scope', 'User', function ($scope, User) {
+    $scope.users = User.query();
 }]);
 
 joeApp.factory('Application', ['$resource', function ($resource) {

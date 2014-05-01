@@ -7,13 +7,27 @@
         <link rel="stylesheet" href="/assets/stylesheets/style.css" >
     </head>
     <body>
+        <!--Applications:
         <div ng-controller="AppsCtrl">
-            <div ng-repeat="app in applications" class="ApplicationSquare">
+            <div ng-repeat="app in applications">
                     <div>
-                        <img ng-src="{{ app.default_icon }}" width="90%" height="90%"/>
+                        <img ng-src="{{ app.icon }}" width="90%" height="90%"/>
                     </div>
+                </br>
                     <div>{{ app.name }}</div>
                     <div>{{ app }}</div>
+            </div>
+        </div>-->
+        Tags:
+        <div ng-controller="TagsCtrl">
+            <div ng-repeat="tag in tags">
+                    <div>{{ tag.name }}</div>
+            </div>
+        </div><br>
+        Users:
+        <div ng-controller="UsersCtrl">
+            <div ng-repeat="user in users">
+                    <div>{{ user.name.givenName + ' ' + user.name.familyName }}</div>
             </div>
         </div>
     </body>
