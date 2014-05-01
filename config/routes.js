@@ -9,7 +9,7 @@ module.exports = function(app) {
   app.use('/', express.static(path.join(__dirname, '../', 'public/html')));
   app.use('/assets', express.static(path.join(__dirname, '../', 'public')));
   app.use('/assets/bower', express.static(path.join(__dirname, '../', 'bower_components')));
-  app.get('/auth/google', authController.isUserAuthenticated, authController.authenticate('google'));
+  app.get('/auth/google', authController.userUnauthenticatedOrRedirect('/main.html'), authController.authenticate('google'));
   app.get('/auth/google/return',
           authController.authenticate('google', { successRedirect: '/main.html',
                                                   failureRedirect: '/login.html' }));
@@ -20,5 +20,5 @@ module.exports = function(app) {
   app.get('/tags/:name', tagController.getTag);
   app.get('/users', authController.getUsers);
   app.get('/users/:token', authController.getUser);
-  app.get('/users/authenticated', authController.getAuthenticatedUser);
+  app.get('/user', authController.getAuthenticatedUser);
 };

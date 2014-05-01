@@ -79,18 +79,28 @@ module.exports = function(app) {
     });
   };
   auth.getAuthenticatedUser = function(req, res) {
-     res.json({
-       displayName: req.user.displayName,
-       name: req.user.name
-     });
+       res.json((req.user) ? {
+         displayName: req.user.displayName,
+         name: req.user.name
+         } : null);
   };
-  auth.isUserAuthenticated = function(req, res, next) {
-    debugger;
-    if (req.isAuthenticated()) {
-      res.redirect('/main.html');
-    } else {
-      next();
-    }
+  auth.userAuthenticatedOrRedirect = function(url) {
+    return function(req, res, next) {
+      if (req.isUnauthenticated()) {
+        res.redirect(url);
+      } else {
+        next();
+      }
+    };
+  };
+  auth.userUnauthenticatedOrRedirect = function(url) {
+    return function(req, res, next) {
+      if (req.isAuthenticated()) {
+        res.redirect(url);
+      } else {
+        next();
+      }
+    };
   };
 
   return auth;
