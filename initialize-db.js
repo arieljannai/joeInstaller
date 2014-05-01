@@ -13,7 +13,8 @@
 
 require('./config/config');
 var Application = require('./app/models/application'),
-    Tag = require('./app/models/tag');
+    Tag = require('./app/models/tag'),
+    mongoose = require('mongoose');
 
 var apps = [new Application({name: 'Brackets',
                              description: 'A wonderful application for... things',
@@ -81,6 +82,18 @@ var tags = [new Tag({name: 'development',
                      applications: [],
                      applications_count: 0})];
 
+Application.find(function(err, apps) {
+    apps.forEach(function (app) {
+        app.remove();
+    });
+});
+
+Tag.find(function(err, tags) {
+    tags.forEach(function (tag) {
+        tag.remove();
+    });
+});
+
 apps.forEach(function (app) {
     app.save(function (err, saved_app) {
         if (err)
@@ -109,4 +122,3 @@ tags.forEach(function (tag) {
         console.log("Created tag " + saved_tag.name + " in the DB!");
     });
 });
-

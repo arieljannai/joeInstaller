@@ -1,4 +1,5 @@
-var Tag = require('../models/tag');
+var Tag = require('../models/tag'),
+    capitalize = require('../utils').capitalize;
 
 // GET all tags, without their relevant applications
 exports.getTags = function (req, res) {
@@ -11,7 +12,7 @@ exports.getTags = function (req, res) {
 exports.getTag = function (req, res) {
     var tag_name = req.params.name;
     
-    Tag.findOne({name: tag_name.toLowerCase()}, function (err, tag) {
+    Tag.findOne({name: capitalize(tag_name)}, function (err, tag) {
         if (err)
             return console.warn(err);
         
