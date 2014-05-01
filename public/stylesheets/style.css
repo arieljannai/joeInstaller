@@ -8,7 +8,7 @@
 
 
 body {
-    background-color:lightblue;
+    background-color:lightgrey;
 }
 
 h3{
@@ -19,7 +19,7 @@ h3{
 
 h1{
     color:black;
-    text-shadow: 5px 5px 5px darkblue;
+    text-shadow: 5px 5px 5px #808080;
     text-align:center;
 }
 
@@ -49,5 +49,184 @@ h1{
 	word-spacing: 20px;  -->
 }
 
+*---Tags!! --*
+
+.tags{
+	margin:0;
+	padding:0;
+	position:absolute;
+	right:24px;
+	bottom:-12px;
+	list-style:none;
+	}
+.tags li, .tags a{
+	float:left;
+	height:24px;
+	line-height:24px;
+	position:relative;
+	font-size:11px;
+	}
+.tags a{
+	margin-left:20px;
+	padding:0 10px 0 12px;
+	background:#0089e0;
+	color:#fff;
+	text-decoration:none;
+	-moz-border-radius-bottomright:4px;
+	-webkit-border-bottom-right-radius:4px;	
+	border-bottom-right-radius:4px;
+	-moz-border-radius-topright:4px;
+	-webkit-border-top-right-radius:4px;	
+	border-top-right-radius:4px;	
+	} 
+.tags a:before{
+	content:"";
+	float:left;
+	position:absolute;
+	top:0;
+	left:-12px;
+	width:0;
+	height:0;
+	border-color:transparent #0089e0 transparent transparent;
+	border-style:solid;
+	border-width:12px 12px 12px 0;		
+	}
+.tags a:after{
+	content:"";
+	position:absolute;
+	top:10px;
+	left:0;
+	float:left;
+	width:4px;
+	height:4px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	background:#fff;
+	-moz-box-shadow:-1px -1px 2px #004977;
+	-webkit-box-shadow:-1px -1px 2px #004977;
+	box-shadow:-1px -1px 2px #004977;
+	}
+.tags a:hover{background:#555;}	
+
+.tags a:hover:before{border-color:transparent #555 transparent transparent;}
 
 
+*------ images hovers ----*
+.imgholder{
+	position:relative;
+	width:120px;
+	height:120px;
+	border-radius:100px;
+	float:left;
+	margin:40px 30px;
+}
+/* thumbnails style */
+.imgholder img{
+	position:absolute;
+	left:0;
+	top:0;
+	width:120px;
+	height:120px;
+	z-index:5;
+	opacity:0.5;
+	filter: alpha(opacity = 50);
+	border-radius:100px;
+	-moz-border-radius:100px;
+	-webkit-border-radius:100px;
+	box-shadow:0 0 5px #000;
+	
+	transition: 
+		opacity 0.7s ease-out 0.3s;
+	-moz-transition: 
+		opacity 0.7s ease-out 0.3s;
+	-webkit-transition: 
+		opacity 0.7s ease-out 0.3s;
+}
+.imgholder:hover img{
+	opacity:1;
+	filter: alpha(opacity = 100);
+}
+.imgholder figcaption{
+	position:absolute;
+	left:0;
+	top:120%;
+	width:120px;
+	color:#004E87;
+	text-shadow:-1px -1px 0 #fff;
+	z-index:4;
+}
+/* decorations style */
+.imgholder .circle{
+	position:absolute;
+	border-radius:100px;
+	-moz-border-radius:100px;
+	-webkit-border-radius:100px;
+}
+.imgholder .outer1{
+	top:-8px;
+	left:-8px;
+	width:120px;
+	height:120px;
+	z-index:2;
+	
+	border:8px solid;
+	border-color:#DEEBFC;
+	box-shadow:0 0 3px #AFD3FF;
+	-moz-box-shadow:0 0 3px #AFD3FF;
+	-webkit-box-shadow:0 0 3px #AFD3FF;
+	
+	background: #ffffff;
+	background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #e2efff 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffffff), color-stop(100%,#e2efff));
+	background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%,#e2efff 100%);
+	background: -o-radial-gradient(center, ellipse cover, #ffffff 0%,#e2efff 100%);
+	background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%,#e2efff 100%);
+	background: radial-gradient(center, ellipse cover, #ffffff 0%,#e2efff 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e2efff',GradientType=1 );
+	
+	transition: 
+		box-shadow 1s ease-out,
+		border-color 1s;
+	-moz-transition: 
+		-moz-box-shadow 1s ease-out,
+		border-color 1s;
+	-webkit-transition: 
+		-webkit-box-shadow 1s ease-out,
+		border-color 1s;
+}
+.imgholder:hover .outer1{
+	border-color:#0088EA;
+	box-shadow:0 0 10px #0285E2;
+}
+.imgholder .outer2{
+	top:-18px;
+	left:-18px;
+	width:136px;
+	height:136px;
+	z-index:1;
+	
+	border:10px solid;
+	border-color: #9BC8FF;
+	box-shadow:0 0 3px #8EB9FF;
+	-moz-box-shadow:0 0 3px #8EB9FF;
+	-webkit-box-shadow:0 0 3px #8EB9FF;
+	opacity:0;
+	filter: alpha(opacity = 0);
+		
+	transition: 
+		opacity 0.7s ease-out 0.3s,
+		box-shadow 0.7s ease-out 0.3s;
+	-moz-transition: 
+		opacity 0.7s ease-out 0.3s,
+		-moz-box-shadow 0.7s ease-out 0.3s;
+	-webkit-transition: 
+		opacity 0.7s ease-out 0.3s,
+		-webkit-box-shadow 0.7s ease-out 0.3s;
+}
+
+.imgholder:hover .outer2{
+	opacity:1;
+	filter: alpha(opacity = 100);
+	box-shadow:0 0 20px #8EB9FF;
+}

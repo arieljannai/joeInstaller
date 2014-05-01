@@ -13,22 +13,27 @@
         <link  href="/assets/stylesheets/style.css" rel="stylesheet">
        
     </head>
+
     <body>
             <h1> Joe the Installer! </h1>
             <br />
     
-           <div>              
+           <div>
+               
+                         
+               
+               
+               
             <input id="search-button" type="image" value="Search" name="sa" alt="search" src="http://cdn.css-tricks.com/images/mag.png" style="float: left">
             <input type="search" ng-model ="searchText" style="float: left"/>
            </div>
+            <br />
             {{ searchText }}
             <br />
             <br />
-        
-        
              <div class="container-fluid">                                          
                    <div class="row" ng-controller="TagsCtrl">
-                        <div class="col-md-1" ng-repeat="tag in tags | filter:searchText">
+                        <div class="col-md-2" ng-repeat="tag in tags | filter:searchText">
                            
                             <ul class="tags">
                                 <li><a href="#"> {{tag.name}}</a></li>
@@ -36,22 +41,28 @@
                         </div>
                     </div>                         
             </div>
-                <br />
-                <br />
-                <br />
-                <br />
+            
         
-                <h3>Applications</h3>
-                <div class="container-fluid"  ng-controller="AppsCtrl">
-                    <div class="row"> 
-                        <div class="col-md-3" ng-repeat="app in applications | filter:searchText"`>
-                           <a ng-href="{{app.path}}"><img ng-src = "{{app.icon}}" width="150" height="150" title ={{app.description}} ></a> 
-                            <br/>{{app.name}}
+         
+        
+        
+            <br />
+            <br />
+            <h3>Applications</h3>
+            <div class="container-fluid"  ng-controller="AppsCtrl">
+                <div class="row"> 
+                    <div class="col-md-3" ng-repeat="app in applications | filter:searchText"`>
+                        <div class="imgholder">
+                            <div class="outer1 circle"></div>
+		                    <div class="outer2 circle"></div>
+                            <figure>
+                                <a ng-href="{{app.path}}"><img ng-src = "{{app.icon}}" width="150" height="150" title ={{app.description}} ></a> 
+                                <br/>{{app.name}}
+                            </figure>
                         </div>
-                    </div>
                 </div>
-        
-                <br />
+            </div>
+            <br />
          <div ng-controller="UsersCtrl">
              
              
