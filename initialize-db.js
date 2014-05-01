@@ -171,6 +171,8 @@ var tags = [new Tag({name: 'development',
                      applications: [],
                      applications_count: 0})];
 
+console.log("Removing all applications and tags");
+
 Application.find(function(err, apps) {
     apps.forEach(function (app) {
         app.remove();
