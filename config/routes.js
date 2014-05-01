@@ -10,14 +10,8 @@ module.exports = function(app) {
   app.use('/assets', express.static(path.join(__dirname, '../', 'public')));
   app.use('/assets/bower', express.static(path.join(__dirname, '../', 'bower_components')));
   app.get('/auth/google', authController.authenticate('google'));
-  app.get('/auth/google/return',
-          authController.authenticate('google'),
-         function(req, res) {
-           res.json({
-             displayName: req.user.displayName,
-             name: req.user.name
-           });
-         });
+  app.get('/auth/google/return', authController.authenticate('google'),
+          authController.getAuthenticatedUser);
     app.get('/applications', applicationController.getApplications);
     app.get('/applications/:id', applicationController.getApplicationById);
     app.get('/tags', tagController.getTags);

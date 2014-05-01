@@ -76,6 +76,12 @@ module.exports = function(app) {
       res.json(user);
     });
   };
+  auth.getAuthenticatedUser = function(req, res) {
+     res.json({
+       displayName: req.user.displayName,
+       name: req.user.name
+     });
+   };
 
   return auth;
 };
