@@ -11,10 +11,12 @@
         <script src="/assets/bower/jquery/dist/jquery.js" ></script>
         <script src="/assets/js/offcanvas.js" ></script>
         <script src="/assets/bower/bootstrap/dist/js/bootstrap.js" ></script>
-        <script src="/assets/js/index.js" ></script>        
+        <script src="/assets/js/index.js" ></script>
+        <script src="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.js" ></script>
                 
         <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
         <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
+        <link rel="stylesheet" href="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.css" >
         <link rel="stylesheet" href="/assets/stylesheets/offcanvas.css" >
     </head>
   <body>
@@ -34,7 +36,7 @@
             <li class="active"><a href="#">בית</a></li>
             <li><a href="#about">אודות</a></li>
             <li><a href="#contact">צרו קשר</a></li>
-            <li><a href="#me">{{ me }}</a></li>
+            <li><a href="#me">{{ me.displayName }}</a></li>              
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -60,19 +62,27 @@
           <p><a class="btn btn-default" href="#selectedApp" role="button" ng-click="changeSelecetedApp(app)">לפרטים נוספים »</a></p>
         </div>
       </div><!--/row-->
-            
-      <hr class="featurette-divider " ng-show="showSelectedAppDivider">
+        
+        <div ng-show="showSelectedAppDivider">
+            <hr class="featurette-divider " >
 
-      <div class="row featurette">
-        <a id="selectedApp">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">{{ selectedApp.name }}</h2>
-          <p class="lead"><span class="text-muted">{{ selectedApp.description }}</span></p>
+          <div class="row featurette">
+            <a id="selectedApp"></a>
+            <div class="col-md-7">
+              <h2 class="featurette-heading">{{ selectedApp.name }} <span class="text-muted" style="font-size:0.4em">(גרסה: {{ selectedApp.versions[0].version }})</span></h2> 
+              <p class="lead"><span class="text-muted">{{ selectedApp.description }}</span></p>
+                <p>{{ selectedApp.versions[0].description }}</p>
+                <a role="button" class="btn btn-default navbar-btn" style="margin:1%; background-color:#80B1F2" ng-href="{{ selectedApp.versions[0].path }}">
+                    <span class="glyphicon glyphicon-download"></span> הורד</a>
+                <h4>תגיות:</h4>
+                <button type="button" class="btn btn-default navbar-btn" ng-repeat="tag in selectedApp.tags" style="margin:1%; font-size:0.8em">{{ tag }}</button>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive" width="70%" height="70%" src="{{ selectedApp.default_icon }}">
+            </div>
+          </div>
         </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-responsive" width="70%" height="70%" src="{{ selectedApp.icon }}">
-        </div></a>
-      </div>
+        
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl">

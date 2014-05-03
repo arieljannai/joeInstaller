@@ -13,7 +13,8 @@
 
 require('./config/config');
 var Application = require('./app/models/application'),
-    Tag = require('./app/models/tag');
+    Tag = require('./app/models/tag'),
+    mongoose = require('mongoose');
 
 var apps = [new Application({name: 'Brackets',
                              description: 'A wonderful application for... things',
@@ -57,7 +58,42 @@ var apps = [new Application({name: 'Brackets',
                                  }
                              ],
                              tags : ['development', 'enjoy life', 'drink responsibly']
-                           })];
+                           }),
+           new Application({name: 'Microsoft Visual Studio',
+                            description : 'Freakin awesome',
+                            default_icon: 'http://upload.wikimedia.org/wikipedia/commons/e/e4/Visual_Studio_2013_Logo.svg',
+                            versions: [
+                                {
+                                    version: '2010',
+                                    path: 'http://install.joe/installs/visualstudio/2010',
+                                    icon: 'http://www.haithem-araissia.com/css/images/Skills/visual-studio--logo.gif',
+                                    checksum : 'CCCCCCCCCCCC',
+                                    description: 'Now with coffee maker and ninja turtle'
+                                },
+                                {
+                                    version: '2013',
+                                    path: 'http://install.joe/installs/visualstudio/2013',
+                                    icon: 'http://computertrainingcenters.com/wp-content/uploads/2013/01/AXFMSTOW2MBFAJZDG4UZTWP6R6NLYV7K.preview-390x250.png',
+                                    checksum : 'CCCCCCCCCCCC',
+                                    description: 'Now with coffee maker and ninja turtle. But now its x2'
+                                }
+                            ],
+                            tags : ['Development', '.NET', 'Microsoft']
+                            }),
+           new Application({name: 'Notepad++',
+                            description : 'awesome text editor',
+                            default_icon: 'http://upload.wikimedia.org/wikipedia/commons/0/0f/Notepad%2B%2B_Logo.png',
+                            versions: [
+                                {
+                                    version: '6.5.5',
+                                    path: 'http://install.joe/installs/visualstudio/2010',
+                                    icon: 'http://upload.wikimedia.org/wikipedia/commons/0/0f/Notepad%2B%2B_Logo.png',
+                                    checksum : 'CCCCCCCCCCCC',
+                                    description: 'Now with coffee maker and ninja turtle'
+                                }
+                            ],
+                            tags : ['Development', 'text editor', 'Don Ho']
+                            })];
 
 var tags = [new Tag({name: 'development',
                     applications: [],
@@ -79,34 +115,105 @@ var tags = [new Tag({name: 'development',
                     applications_count: 0}),
             new Tag({name: '.net',
                      applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'java',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'scala',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'microsoft',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'php',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'text editor',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'application server',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'oracle',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'ibm',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'cto lead',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'joe',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'wiki',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'node.js',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'javascript',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'ruby',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'ruby on rails',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'python',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'code',
+                     applications: [],
+                     applications_count: 0}),
+           new Tag({name: 'programming',
+                     applications: [],
                      applications_count: 0})];
 
-apps.forEach(function (app) {
-    app.save(function (err, saved_app) {
-        if (err)
-            return console.error(err);
-        
-        console.log("Created application " + saved_app.name + " in the DB!");
+console.log("Removing all applications and tags");
+
+Application.find(function(err, apps) {
+    apps.forEach(function (app) {
+        app.remove();
     });
 });
 
-tags.forEach(function (tag) {
-    apps.filter(function (app) {
-            return app.tags.indexOf(tag.name) != -1})
-        .forEach(function (app) {
-            tag.applications.push({
-                name : app.name,
-                icon : app.default_icon,
-                description : app.description,
-                app_oid : app._id});
-            tag.applications_count++;
+Tag.find(function(err, tags) {
+    tags.forEach(function (tag) {
+        tag.remove();
+    });
+});
+
+setTimeout(function() {
+    apps.forEach(function (app) {
+        app.save(function (err, saved_app) {
+            if (err)
+                return console.error(err);
+
+            console.log("Created application " + saved_app.name + " in the DB!");
         });
-    
-    tag.save(function (err, saved_tag) {
-        if (err)
-            return console.error(err);
-        
-        console.log("Created tag " + saved_tag.name + " in the DB!");
     });
-});
 
+    tags.forEach(function (tag) {
+        apps.filter(function (app) {
+                return app.tags.indexOf(tag.name) != -1})
+            .forEach(function (app) {
+                tag.applications.push({
+                    name : app.name,
+                    icon : app.default_icon,
+                    description : app.description,
+                    app_oid : app._id});
+                tag.applications_count++;
+            });
+
+        tag.save(function (err, saved_tag) {
+            if (err)
+                return console.error(err);
+
+            console.log("Created tag " + saved_tag.name + " in the DB!");
+        });
+    });
+    
+    setTimeout(process.exit, 2000);
+}, 2000);

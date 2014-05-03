@@ -11,13 +11,15 @@ joeApp.controller('AppsCtrl', ['$scope', 'Application', function ($scope, Applic
     $scope.showSelectedAppDivider = false;
     
     $scope.changeSelecetedApp = function (app) {
-        $scope.selectedApp = app;
+        $scope.selectedApp = Application.app({app_oid: app.app_oid});
+        //$scope.appFirstVersion = $scope.selectedApp.versions[0];
         $scope.showSelectedAppDivider = true;
     }
 }]);
 
 joeApp.controller('TagsCtrl', ['$scope', 'Tag', function ($scope, Tag) {
     $scope.tags = Tag.query();
+    $scope.popularTags = Tag.popular();
 }]);
 
 joeApp.controller('UsersCtrl', ['$scope', 'User', function ($scope, User) {
@@ -26,13 +28,13 @@ joeApp.controller('UsersCtrl', ['$scope', 'User', function ($scope, User) {
 }]);
 
 joeApp.factory('Application', ['$resource', function ($resource) {
-    return $resource('/applications');
+    return $resource('/applications', null, { app: {method: 'GET', url: '/applications/:app_oid'} });
 }]);
 
 joeApp.factory('Tag', ['$resource', function ($resource) {
-    return $resource('/tags');
+    return $resource('/tags', null, { popular: {method: 'GET', url: '/popular/tags'} });
 }]);
 
 joeApp.factory('User', ['$resource', function ($resource) {
-    return $resource('/users', {}, { authenticated: {method: 'GET', url: '/user/authenticated'} });
+    return $resource('/users', null, { authenticated: {method: 'GET', url: '/user'} });
 }]);
