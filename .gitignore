@@ -19,6 +19,11 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+# Binaries of VS
+client/**/bin
+client/**/obj
+client/**/packages
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
