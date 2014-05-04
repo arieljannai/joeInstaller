@@ -10,8 +10,8 @@ var apps = [new Application({name: 'Brackets',
                              versions: [
                                  {
                                      version: 'Sprint 38',
-                                     path: '/usr/bin/brackets',
-                                     checksum: 'R2D2R2D2',
+                                     path: 'brackets.tar',
+                                     checksum: 'afc2295bbe4f285327b9c483f5a0f091b12add45',
                                      description: 'Moar new features!'
                                  },
                                  {
