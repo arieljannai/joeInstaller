@@ -12,7 +12,7 @@ module.exports = function(app) {
   app.use('/assets/bower', express.static(path.join(__dirname, '../', 'bower_components')));
   app.get('/auth/google', authController.userUnauthenticatedOrRedirect('/main.html'), authController.authenticate('google'));
   app.get('/auth/google/return',
-          authController.authenticate('google', { successRedirect: '/main.html',
+          authController.authenticate('google', { successRedirect: '/index.html',
                                                   failureRedirect: '/login.html' }));
   app.get('/applications', applicationController.getApplications);
   app.get('/applications/:id', applicationController.getApplicationById);
