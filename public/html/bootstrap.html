@@ -15,10 +15,10 @@
         <script src="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.js" ></script>
                 
         <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
-        <!--<link rel="stylesheet" href="/assets/stylesheets/amelia-bootstrap.min.css" >-->
         <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
         <link rel="stylesheet" href="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.css" >
         <link rel="stylesheet" href="/assets/stylesheets/offcanvas.css" >
+        <link rel="stylesheet" href="/assets/stylesheets/search.css" >
         
     </head>
   <body>
@@ -61,18 +61,20 @@
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
-          <div class="jumbotron">
+          <div class="jumbotron" style="height:10%">
             <h1>ברוכים הבאים ליוחנן המתקין!</h1>
             <p>אני כאן כדי לעזור לכם לארגן את ההתקנות שלכם, ולעשות לכם חיים קלים. <br>בעזרתי תוכלו למצוא ולהתקין בקלות את כל התוכנות שתרצו :)</p>
+              <input id="namanyay-search-box" type="search" placeholder="  מה ברצונך לחפש?  " ng-model="searchBox"/> 
           </div>
-          <div class="row" >
-        <div class="col-lg-4" ng-repeat="app in applications">
-            <img class="img-circle" ng-src="{{ app.icon }}" style="width: 140px; height: 140px; border:1px solid #CCCCFF; box-shadow: 4px 4px 3px #888888;">
-          <h2>{{ app.name }}</h2>
-          <p>{{ app.description }}</p>
-          <p><a class="btn btn-default" href="#selectedApp" role="button" ng-click="changeSelecetedApp(app)">לפרטים נוספים »</a></p>
-        </div>
-      </div><!--/row-->
+            
+        <div class="row" >
+            <div class="col-lg-4" ng-repeat="app in applications | filter:searchBox">
+                <img class="img-circle" ng-src="{{ app.icon }}" style="width: 140px; height: 140px; border:1px solid #CCCCFF; box-shadow: 4px 4px 3px #888888;">
+              <h2>{{ app.name }}</h2>
+              <p>{{ app.description }}</p>
+              <p><a class="btn btn-default" href="#selectedApp" role="button" ng-click="changeSelecetedApp(app)">לפרטים נוספים »</a></p>
+            </div>
+        </div><!--/row-->
         
         <div ng-show="showSelectedAppDivider">
             <hr class="featurette-divider " >
@@ -83,7 +85,7 @@
               <h2 class="featurette-heading">{{ selectedApp.name }} <span class="text-muted" style="font-size:0.4em">(גרסה: {{ selectedApp.versions[0].version }})</span></h2> 
               <p class="lead"><span class="text-muted">{{ selectedApp.description }}</span></p>
                 <p>{{ selectedApp.versions[0].description }}</p>
-                <a role="button" class="btn btn-default navbar-btn" style="margin:1%; background-color:#80B1F2">
+                <a role="button" class="btn btn-default navbar-btn" style="margin:1%; background-color:#80B1F2" ng-href="{{ '/auto_install/getAutoInstallInfo?appId=' + selectedApp._id + '&version=' + selectedApp.versions[0].version }}" download="{{ selectedApp.name  + '.jin' }}">
                     <span class="glyphicon glyphicon-download"></span> הורד</a>
                 <h4>תגיות:</h4>
                 <button type="button" class="btn btn-default navbar-btn" ng-repeat="tag in selectedApp.tags" style="margin:1%; font-size:0.8em">{{ tag }}</button>
