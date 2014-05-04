@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" ng-app="joeInstaller">
-    <head>
+    <head> 
+        <center>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,9 +20,11 @@
         <link rel="stylesheet" href="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.css" >
         <link rel="stylesheet" href="/assets/stylesheets/offcanvas.css" >
         <link  href="/assets/stylesheets/style.css" rel="stylesheet">
+        </center>
     </head>
-  <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <body style="class=col-xs-4 col-xs-offset-4">
+    <center>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation" style="margin:1%;">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -37,10 +40,6 @@
             <li class="active"><a href="#">בית</a></li>
             <li><a href="#about">אודות</a></li>
             <li><a href="#contact">צרו קשר</a></li>
-              
-            <input id="search-button" type="image" value="Search" name="sa" alt="search" src="http://cdn.css-tricks.com/images/mag.png" style="float: right">
-            <li><input type="search" ng-model ="searchText" style="float: right"/><li>
-              
             <li style="float:left"><a href="#me">{{ me.displayName }}</a></li>
           </ul>
         </div><!-- /.nav-collapse -->
@@ -49,23 +48,31 @@
 
     <div class="container">
 
-      <div class="row row-offcanvas row-offcanvas-right">
+      <div class="row row-offcanvas row-offcanvas-right centered">
 
-        <div class="col-xs-12 col-sm-9" ng-controller="AppsCtrl">
+        <div class="col-xs-10 col-sm-9 span12 offset1" ng-controller="AppsCtrl">
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-            <h1>ברוכים הבאים ליוחנן המתקין!</h1>
+            <h1 style="color:black">ברוכים הבאים ליוחנן המתקין!</h1>
             <p>אני כאן כדי לעזור לכם לארגן את ההתקנות שלכם, ולעשות לכם חיים קלים. <br>בעזרתי תוכלו למצוא ולהתקין בקלות את כל התוכנות שתרצו :)</p>
           </div>
           <div class="row" >
+              
+              <div class="row-xs-6" id="tags_list" role="navigation" ng-controller="TagsCtrl" >
+                <div  class="tags">
+                   <a href="#" ng-repeat="tag in tags  | filter:searchText" class="" style="margin: 1%">{{ tag.name }}</a></li>
+                </div>
+              </div>
+              
         <div class="col-lg-4" ng-repeat="app in applications | filter:searchText">
             <img class="img-circle" ng-src="{{ app.icon }}" style="width: 140px; height: 140px; border:1px solid #CCCCFF; box-shadow: 4px 4px 3px #888888;">
           <h2>{{ app.name }}</h2>
           <p>{{ app.description }}</p>
           <p><a class="btn btn-default" href="#selectedApp" role="button" ng-click="changeSelecetedApp(app)">לפרטים נוספים »</a></p>
         </div>
+              
       </div><!--/row-->
         
         <div ng-show="showSelectedAppDivider">
@@ -87,16 +94,21 @@
             </div>
           </div>
         </div>
-        
+         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl" >
+           </div>
         </div><!--/span-->
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl" >
-          <div style="max-height:100%; padding-left: 20%; overflow-y: auto" class="tags">
-            <a href="#" ng-repeat="tag in tags  | filter:searchText" style="clear:both" class="">{{ tag.name }}</a></li>
+         
+        
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl" >
+          <div >
+             <img src="/assets/images/joe-face.jpg" height="100%" width="100%" >
           </div>
         </div><!--/span-->
-      </div><!--/row-->
-
+    
+    
+        
+        </div>
       <hr>
 
       <footer>
@@ -104,4 +116,6 @@
       </footer>
 
     </div>
-</body></html>
+    </center>
+    </body>
+</html>

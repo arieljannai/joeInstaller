@@ -1,72 +1,121 @@
 <!DOCTYPE html>
 <html lang="he" ng-app="joeInstaller">
-    <center>
-    <head>
-        <title> Joe the Installer! </title>
-        
-       
+    <head> 
+        <center>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <script src="/assets/bower/angular/angular.js" ></script>
         <script src="/assets/bower/angular-resource/angular-resource.js" ></script>
+        <script src="/assets/bower/jquery/dist/jquery.js" ></script>
+        <script src="/assets/js/offcanvas.js" ></script>
+        <script src="/assets/bower/bootstrap/dist/js/bootstrap.js" ></script>
         <script src="/assets/js/index.js" ></script>
-        
-        <link  href="/assets/bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+        <script src="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.js" ></script>
+                
+        <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
+        <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
+        <link rel="stylesheet" href="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.css" >
+        <link rel="stylesheet" href="/assets/stylesheets/offcanvas.css" >
         <link  href="/assets/stylesheets/style.css" rel="stylesheet">
-       
+        </center>
     </head>
+  <body style="class=col-xs-4 col-xs-offset-4">
+    <center>
+    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation" style="margin:1%;">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">יוחנן המתקין</a>
+        </div>
+        <div class="collapse navbar-collapse" ng-controller="UsersCtrl">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">בית</a></li>
+            <li><a href="#about">אודות</a></li>
+            <li><a href="#contact">צרו קשר</a></li>
+            <li style="float:left"><a href="#me">{{ me.displayName }}</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div><!-- /.navbar -->
 
-    <body>
-            <h1> Joe the Installer! </h1>
-            <br />
-    
-           <div>
-                <input id="search-button" type="image" value="Search" name="sa" alt="search" src="http://cdn.css-tricks.com/images/mag.png" style="float: right">
-                <input type="search" ng-model ="searchText" style="float: right"/>
-           </div>
-            <br />
-            {{ searchText }}
-            <br />
-            <br />
-             <div class="container-fluid">                                          
-                   <div class="row" ng-controller="TagsCtrl">
-                        <div class="col-md-2" ng-repeat="tag in tags | filter:searchText">
-                           
-                            <ul class="tags">
-                                <li><a href="#"> {{tag.name}}</a></li>
-                            </ul>
-                        </div>
-                    </div>                         
-            </div>
-            
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right centered">
+
+        <div class="col-xs-10 col-sm-9 span12 offset1" ng-controller="AppsCtrl">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="jumbotron">
+            <h1 style="color:black">ברוכים הבאים ליוחנן המתקין!</h1>
+            <p>אני כאן כדי לעזור לכם לארגן את ההתקנות שלכם, ולעשות לכם חיים קלים. <br>בעזרתי תוכלו למצוא ולהתקין בקלות את כל התוכנות שתרצו :)</p>
+          </div>
+          <div class="row" >
+              
+              <div class="row-xs-6" id="tags_list" role="navigation" ng-controller="TagsCtrl" >
+                <div  class="tags">
+                   <a href="#" ng-repeat="tag in tags  | filter:searchText" class="" style="margin: 1%">{{ tag.name }}</a></li>
+                </div>
+              </div>
+              
+        <div class="col-lg-4" ng-repeat="app in applications | filter:searchText">
+            <img class="img-circle" ng-src="{{ app.icon }}" style="width: 140px; height: 140px; border:1px solid #CCCCFF; box-shadow: 4px 4px 3px #888888;">
+          <h2>{{ app.name }}</h2>
+          <p>{{ app.description }}</p>
+          <p><a class="btn btn-default" href="#selectedApp" role="button" ng-click="changeSelecetedApp(app)">לפרטים נוספים »</a></p>
+        </div>
+              
+      </div><!--/row-->
         
+        <div ng-show="showSelectedAppDivider">
+            <hr class="featurette-divider " >
+
+          <div class="row featurette">
+            <a id="selectedApp"></a>
+            <div class="col-md-7">
+              <h2 class="featurette-heading">{{ selectedApp.name }} <span class="text-muted" style="font-size:0.4em">(גרסה: {{ selectedApp.versions[0].version }})</span></h2> 
+              <p class="lead"><span class="text-muted">{{ selectedApp.description }}</span></p>
+                <p>{{ selectedApp.versions[0].desscription }}</p>
+                <a role="button" class="btn btn-default navbar-btn" style="margin:1%; background-color:#80B1F2" ng-href="{{ selectedApp.versions[0].path }}">
+                    <span class="glyphicon glyphicon-download"></span> הורד</a>
+                <h4>תגיות:</h4>
+                <button type="button" class="btn btn-default navbar-btn" ng-repeat="tag in selectedApp.tags" style="margin:1%; font-size:0.8em">{{ tag }}</button>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive" width="70%" height="70%" src="{{ selectedApp.default_icon }}">
+            </div>
+          </div>
+        </div>
+         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl" >
+           </div>
+        </div><!--/span-->
+
          
         
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl" >
+          <div >
+             <img src="/assets/images/joe-face.jpg" height="100%" width="100%" >
+          </div>
+        </div><!--/span-->
+    
+    
         
-            <br />
-            <br />
-            <h3>Applications</h3>
-            <div class="container-fluid"  ng-controller="AppsCtrl">
-                <div class="row"> 
-                    <div class="col-md-3" ng-repeat="app in applications | filter:searchText"`>
-                        <div class="imgholder">
-                            <div class="outer1 circle"></div>
-		                    <div class="outer2 circle"></div>
-                            <figure>
-                                <a ng-href="{{app.path}}"><img ng-src = "{{app.icon}}" width="150" height="150" title ={{app.description}} ></a> 
-                                <br/>{{app.name}}
-                            </figure>
-                        </div>
-                </div>
-            </div>
-            <br />
-         <div ng-controller="UsersCtrl">
-             
-             
-            <div ng-repeat="user in users">
-                    <div>{{ user.name.givenName + ' ' + user.name.familyName }}</div>
-            </div>
         </div>
-            
-        </div>
-    </body> 
- </center>
+      <hr>
+
+      <footer>
+        <p>© Powered by Joe</p>
+      </footer>
+
+    </div>
+    </center>
+    </body>
 </html>
