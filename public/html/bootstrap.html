@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
         <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
         <link rel="stylesheet" href="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.css" >
+        <link rel="stylesheet" href="/assets/stylesheets/style.css" >
         <link rel="stylesheet" href="/assets/stylesheets/offcanvas.css" >
         <link rel="stylesheet" href="/assets/stylesheets/search.css" >
         
@@ -68,6 +69,11 @@
           </div>
             
         <div class="row" >
+            <div class="row-xs-6" id="tags_list" role="navigation" ng-controller="TagsCtrl" >
+                <div  class="tags">
+                   <a href="#" ng-repeat="tag in tags  | filter:searchText" class="" style="margin: 1%">{{ tag.name }}</a></li>
+                </div>
+            </div>
             <div class="col-lg-4" ng-repeat="app in applications | filter:searchBox">
                 <img class="img-circle" ng-src="{{ app.icon }}" style="width: 140px; height: 140px; border:1px solid #CCCCFF; box-shadow: 4px 4px 3px #888888;">
               <h2>{{ app.name }}</h2>
@@ -98,9 +104,9 @@
         
         </div><!--/span-->
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl">
-          <div class="list-group" style="max-height:400px; overflow-y:scroll">
-            <a ng-repeat="tag in tags" href="#" class="list-group-item">{{ tag.name }}</a>
+     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" ng-controller="TagsCtrl" >
+          <div >
+             <img src="/assets/images/joe-face.jpg" height="100%" width="100%" >
           </div>
         </div><!--/span-->
       </div><!--/row-->

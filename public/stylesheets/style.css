@@ -6,7 +6,6 @@
     font:12pt Arial;
 }
 
-
 body {
     background-color:white;
     height: 100%;
@@ -43,8 +42,8 @@ input[type="search"] {
 	cursor: pointer;
 	display: block; 
 	width: 80%;   
-	text-shadow: 0 0 2px lightblue;       
-	word-spacing: 20px; 
+	text-shadow: 0 0 2px lightblue;
+    font:10pt Arial;
 }
 
 *---Tags!! --*
