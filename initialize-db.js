@@ -1,19 +1,7 @@
-/** Sample Entry: 
-{
-    'name': ' Development',
-    'applications' : [
-        {
-            'name' : 'Microsoft Visual Studio',
-            'icon' : 'C:\path',
-            'description' : 'A wonderful amazing doesn't ever work tool',
-            'app_oid' : '1A3D'
-        }]
-}
-*/
-
 require('./config/config');
 var Application = require('./app/models/application'),
     Tag = require('./app/models/tag'),
+    User = require('./app/models/user'),
     mongoose = require('mongoose');
 
 var apps = [new Application({name: 'Brackets',
@@ -187,11 +175,11 @@ Tag.find(function(err, tags) {
 
 setTimeout(function() {
     apps.forEach(function (app) {
-        app.save(function (err, saved_app) {
+        app.save(function (err) {
             if (err)
                 return console.error(err);
 
-            console.log("Created application " + saved_app.name + " in the DB!");
+            console.log("Created application " + app.name + " in the DB!");
         });
     });
 
@@ -215,5 +203,12 @@ setTimeout(function() {
         });
     });
     
-    setTimeout(process.exit, 2000);
-}, 2000);
+    console.log("Updating users in DB");
+    var user_apps = apps.map(function (app) { return {aid: app._id, name: app.name}; });
+    User.update({}, {applications: user_apps}, {multi: true}, function (err, affected) {
+        if (err)
+            console.log(err);
+    });
+    
+    setTimeout(process.exit, 4000);
+}, 4000);

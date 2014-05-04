@@ -31,15 +31,6 @@ var schema = new mongoose.Schema({
 
 schema.pre('save', function(next) {
     this.tags = this.tags.map(function(tag) { return capitalize(tag); });
-    /*for(tag in this.tags)
-    {
-        Tag.update({name: tag}, {name: tag}, {upsert: true}, function(err) {
-            if (err) {
-                console.log(err);
-                next(err);
-            }
-        });
-    }*/
     next();
 });
 

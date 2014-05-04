@@ -18,7 +18,7 @@ var mongoose = require('mongoose'),
 var schema = new mongoose.Schema({
     name: { type: String, index: {unique: true}},
     applications: [{ name : String, icon : String, description : String, app_oid : mongoose.Schema.ObjectId}],
-    applications_count : Number
+    applications_count : {type: Number, default: 0}
 });
 
 schema.pre('save', function(next) {
