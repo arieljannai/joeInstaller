@@ -1,4 +1,6 @@
-var Application = require('../models/application');
+var Application = require('../models/application'),
+    multiparty = require('multiparty'),
+    path = require('path');
 
 exports.getApplications = function (req, res) {
     Application.find(function(err, found_apps) {
@@ -37,4 +39,43 @@ exports.addApplication = function (req, res) {
             res.json({success : true});
         }
     });
+};
+
+exports.uploadApplication = function(req, res) {
+  var app_oid = req.params.id;
+  var app;
+  
+
+  var form = new multiparty.Form({
+    uploadDir: path.join(__dirname, '../../app_store'),
+    hash: 'sha1'
+  });
+
+  form.parse(req, function(err, fields, files) {
+    if (err) {
+      res.send(500, {error: err});
+    }
+
+    Application.findById(app_oid, function(err, found_app) {
+      if (err)
+        res.send(500, {error: err});
+       debugger; 
+      for (var i in found_app.versions) {
+        if (found_app.versions[i].version === fields.version[0]) {
+          var versionElement = found_app.versions[i];
+          versionElement.set('path', path.basename(files.installer[0].path));
+          versionElement.set('checksum', files.installer[0].hash);
+          found_app.versions.set(i, versionElement);
+        }
+      }
+
+      found_app.save(function(err) {
+        if (err) {
+          res.send(500, {error: err});
+        }
+
+        res.send('Installer uploaded successfully');
+      });
+    });
+  });
 };

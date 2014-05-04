@@ -14,7 +14,9 @@
     "debug": "~0.7.4",
     "mongoose": "~3.8.8",
     "passport": "~0.2.0",
-    "passport-google": "~0.3.0"
+    "passport-google": "~0.3.0",
+    "tar": "~0.1.19",
+    "multiparty": "~3.2.4"
   },
   "devDependencies": {
     "nodemon": "latest"
