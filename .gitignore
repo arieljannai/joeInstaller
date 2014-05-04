@@ -37,3 +37,6 @@ data
 
 # ignore thumbs.db files
 Thumbs.db
+
+# ignore uploaded files
+app_store
