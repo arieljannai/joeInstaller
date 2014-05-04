@@ -15,9 +15,11 @@
         <script src="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.js" ></script>
                 
         <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
+        <!--<link rel="stylesheet" href="/assets/stylesheets/amelia-bootstrap.min.css" >-->
         <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
         <link rel="stylesheet" href="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.css" >
         <link rel="stylesheet" href="/assets/stylesheets/offcanvas.css" >
+        
     </head>
   <body>
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -32,11 +34,20 @@
           <a class="navbar-brand" href="#">יוחנן המתקין</a>
         </div>
         <div class="collapse navbar-collapse" ng-controller="UsersCtrl">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="#">בית</a></li>
             <li><a href="#about">אודות</a></li>
             <li><a href="#contact">צרו קשר</a></li>
-            <li><a href="#me">{{ me.displayName }}</a></li>              
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ me.displayName }}<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li align="center" class="well">
+                    <div><img class="img-responsive" style="padding:2%;" src="http://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/twDq00QDud4/s120-c/photo.jpg"/><a class="change" href="">שנה תמונה</a></div>
+                    <a href="/user.html" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-user"></span> פרופיל</a>
+                    <a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-lock"></span> אבטחה</a>
+                </li>
+               </ul>
+            </li>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -72,7 +83,7 @@
               <h2 class="featurette-heading">{{ selectedApp.name }} <span class="text-muted" style="font-size:0.4em">(גרסה: {{ selectedApp.versions[0].version }})</span></h2> 
               <p class="lead"><span class="text-muted">{{ selectedApp.description }}</span></p>
                 <p>{{ selectedApp.versions[0].description }}</p>
-                <a role="button" class="btn btn-default navbar-btn" style="margin:1%; background-color:#80B1F2" ng-href="{{ selectedApp.versions[0].path }}">
+                <a role="button" class="btn btn-default navbar-btn" style="margin:1%; background-color:#80B1F2">
                     <span class="glyphicon glyphicon-download"></span> הורד</a>
                 <h4>תגיות:</h4>
                 <button type="button" class="btn btn-default navbar-btn" ng-repeat="tag in selectedApp.tags" style="margin:1%; font-size:0.8em">{{ tag }}</button>

@@ -1,0 +1,176 @@
+<html lang="he" ng-app="joeInstaller">
+    <head>
+        <script src="/assets/bower/angular/angular.js" ></script>
+        <script src="/assets/bower/angular-resource/angular-resource.js" ></script>
+        <script src="/assets/bower/jquery/dist/jquery.js" ></script>
+        <script src="/assets/bower/bootstrap/dist/js/bootstrap.js" ></script>
+        <script src="/assets/js/index.js" ></script>
+        <script src="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.js" ></script>
+                
+        <link rel="stylesheet" href="/assets/bower/bootstrap/dist/css/bootstrap.css" >
+        <link rel="stylesheet" href="/assets/bower/bootstrap-rtl/dist/css/bootstrap-rtl.css" >
+        <link rel="stylesheet" href="/assets/bower/bootstrap-tagsinput/bootstrap-tagsinput.css" >
+        <link href="/assets/stylesheets/font-awesome.css" rel="stylesheet">
+    </head>
+<body ng-controller="UsersCtrl">
+        <nav class="navbar navbar-inverse container" role="navigation">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">יוחנן המתקין</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+              <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="#">בית</a></li>
+                <li><a href="#about">אודות</a></li>
+                <li><a href="#contact">צרו קשר</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ me.displayName }}<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li align="center" class="well">
+                        <div><img class="img-responsive" style="padding:2%;" src="https://lh3.googleusercontent.com/-9ZrlSdbE5DU/AAAAAAAAAAI/AAAAAAAAAAA/5hZqEH32174/photo.jpg"/><a class="change" href="">שנה תמונה</a></div>
+                        <a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-user"></span> פרופיל</a>
+                        <a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-lock"></span> אבטחה</a>
+                    </li>
+                   </ul>
+                </li>
+              </ul>
+            </div><!-- /.nav-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+
+
+        <div class="container" ng-controller="AppsCtrl">
+            <div class="row well">
+                <div class="col-md-2">
+                    <ul class="nav nav-pills nav-stacked well">
+                      <!--<li  class="active"><a href="#"><i class="fa fa-envelope"></i> Compose</a></li>-->
+                        <li class="active"><a href="#"><i class="glyphicon glyphicon-home"></i> בית</a></li>
+                        <li><a href="#installgroups"><i class="glyphicon glyphicon-group"></i> קבוצות התקנה</a></li>
+                        <li><a href="#profile"><i class="glyphicon glyphicon-user"></i> פרופיל</a></li>
+                        <li><a href="#security"><i class="glyphicon glyphicon-lock"></i> אבטחה</a></li>
+                      <!--<li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>-->
+                    </ul>
+                </div>
+                <div class="col-md-10">
+                        <div class="panel" style="background-image: url('http://discoversooke.com/wp-content/uploads/2013/12/sombrio-beach.jpg')">
+                            <img class="pic img-circle" width="15%" height="18%" src="https://lh3.googleusercontent.com/-9ZrlSdbE5DU/AAAAAAAAAAI/AAAAAAAAAAA/5hZqEH32174/photo.jpg" alt="...">
+                            <!--<a href="#" class="btn btn-xs btn-primary pull-right" style="margin:10px;"><span class="glyphicon glyphicon-picture"></span> Change cover</a>-->
+                        </div>
+
+            <br><br><br>
+            <ul class="nav nav-tabs" id="myTab">
+              <li class="active"><a href="#inbox" data-toggle="tab"><i class="glyphicon glyphicon-show-thumbnails"></i> תוכנות</a></li>
+              <li><a href="#sent" data-toggle="tab"><i class="glyphicon glyphicon-history"></i> היסטוריה</a></li>
+              <li><a href="#assignment" data-toggle="tab"><i class="glyphicon glyphicon-keys"></i> זכאות לרשיונות</a></li>
+              <!--<li><a href="#event" data-toggle="tab"><i class="fa fa-clock-o"></i> Event</a></li>-->
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="inbox">
+                <a type="button" data-toggle="collapse" data-target="#a1">
+                    <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;" ng-repeat="app in applications">
+                      <div class="btn-group"><input type="checkbox"></div>
+                      <div class="btn-group col-md-3"><img ng-src="{{ app.icon}}" width="25px" height="25px"><b>  {{ app.name }}</b></div>
+                      <div class="btn-group col-md-8"></i>{{ app.description }}<div class="pull-right"></div></div>
+                    </div>
+                </a>
+                <!--<div id="a1" class="collapse out well">This is the message body1</div>-->
+                <br>
+                <button class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-remove"></i> הסר תוכנה</button>
+              </div>
+
+
+              <div class="tab-pane" id="sent">
+                    <a type="button" data-toggle="collapse" data-target="#s1">
+                    <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
+                      <div class="btn-group"><input type="checkbox"></div>
+                      <!--<div class="btn-group col-md-3">Kumar</div>
+                      <div class="btn-group col-md-8"><b>This is reply from Bootstrap plugin</b> <div class="pull-right"><i class="glyphicon glyphicon-time"></i> 12:30 AM</div> </div>-->
+                        <div class="btn-group col-md-10">כאן תוכל לצפות בהיסטוריית הפעולות שלך</div>
+                    </div>
+                </a>
+                <div id="s1" class="collapse out well">התקנת את תוכנה **** בגרסה **** בתאריך 01/01/2014</div>
+              </div>
+
+
+             <div class="tab-pane" id="assignment">
+                 <a type="button" data-toggle="collapse" data-target="#s1">
+                    <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
+                      <div class="btn-group"><input type="checkbox"></div>
+                        <div class="btn-group col-md-3">Visual Studio Ultimate</div>
+                        <a role="button" class="btn btn-default navbar-btn" style="margin:0%;background-color:#80B1F2">
+                            <span class="glyphicon glyphicon-download"></span> להורדה </a>
+                    </div>
+                </a>
+             </div>
+
+             <div class="tab-pane" id="event">
+               <div class="media">
+                          <a class="pull-left" href="#">
+                            <img class="media-object img-thumbnail" width="100" src="http://cfi-sinergia.epfl.ch/files/content/sites/cfi-sinergia/files/WORKSHOPS/Workshop1.jpg" alt="...">
+                          </a>
+                          <div class="media-body">
+                            <h4 class="media-heading">Animation Workshop</h4>
+                            2Days animation workshop to be conducted
+                          </div>
+                    </div>
+            </div>
+
+
+
+            </div>
+
+             </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        <!--<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content"><br/><br/>
+                    <form class="form-horizontal">
+                    <fieldset>
+
+                    <div class="form-group">
+                      <label class="col-md-2 control-label" for="body">Body :</label>  
+                      <div class="col-md-8">
+                      <input id="body" name="body" type="text" placeholder="Message Body" class="form-control input-md">
+
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-md-2 control-label" for="message">Message :</label>
+                      <div class="col-md-8">                     
+                        <textarea class="form-control" id="message" name="message"></textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-md-2 control-label" for="send"></label>
+                      <div class="col-md-8">
+                        <button id="send" name="send" class="btn btn-primary">Send</button>
+                      </div>
+                    </div>
+
+                    </fieldset>
+                    </form>
+
+            </div>
+          </div>
+        </div>-->
+    </body>
+</html>
