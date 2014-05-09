@@ -40,3 +40,7 @@ Thumbs.db
 
 # ignore uploaded files
 app_store
+
+# ignore bower_components
+# just use bower install to add all the dependencies
+bower_components
