@@ -16,6 +16,10 @@ Installing
     git clone https://github.com/arieljannai/joeInstaller.git
     cd joeInstaller && npm install && bower install
 
+Initialize DB with dummy data
+-----------------------------
+    node initialize-db.js
+
 Running
 -------
     npm start
