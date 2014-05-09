@@ -1,0 +1,39 @@
+{
+  "name": "JoeInstaller",
+  "version": "0.0.1",
+  "description": "Simple PC app store for oragnizations",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "joe",
+    "installer",
+    "auto-install"
+  ],
+  "authors": [
+    "Ariel Jannai",
+    "Aviv Rozenboim",
+    "Lena Pismeny",
+    "Shahaf Arad"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/arieljannai/joeInstaller",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.16",
+    "angular-resource": "~1.2.16",
+    "angular-bootstrap": "~0.10.0",
+    "bootstrap-rtl": "~3.1.1",
+    "bootstrap": "~3.1.1",
+    "angular-ui-router": "~0.2.10",
+    "jquery": "~2.1.0"
+  }
+}
