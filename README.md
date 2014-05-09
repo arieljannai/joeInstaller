@@ -13,9 +13,8 @@ Requirements
 
 Installing
 ----------
-
     git clone https://github.com/arieljannai/joeInstaller.git
-    cd joeInstaller && npm install
+    cd joeInstaller && npm install && bower install
 
 Running
 -------
